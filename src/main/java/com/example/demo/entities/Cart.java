@@ -21,6 +21,7 @@ public class Cart {
     @Column(name="cart_id")
     private Long id;
 
+
     @Column(name="order_tracking_number")
     private String orderTrackingNumber;
 
@@ -51,5 +52,8 @@ public class Cart {
     private Set<CartItem> cartItem = new HashSet<>();
 
     public Cart() {
+    }
+
+    public void add(CartItem item) {
     }
 }
