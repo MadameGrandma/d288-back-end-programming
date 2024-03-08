@@ -12,10 +12,8 @@ import java.util.Set;
 
 @Entity
 @Table(name="carts")
-
 @Getter
 @Setter
-
 public class Cart {
 
     @Id
@@ -52,4 +50,6 @@ public class Cart {
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "cart")
     private Set<CartItem> cartItem = new HashSet<>();
 
+    public Cart() {
+    }
 }

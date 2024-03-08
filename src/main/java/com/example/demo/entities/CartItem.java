@@ -43,4 +43,6 @@ public class CartItem {
     @UpdateTimestamp
     private Date last_update;
 
+    public CartItem() {
+    }
 }

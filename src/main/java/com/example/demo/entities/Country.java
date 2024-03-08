@@ -31,7 +31,9 @@ public class Country {
     private Date last_update;
 
     //@Column(name="divisions")
-    @OneToMany(cascade=CascadeType.ALL, mappedBy = "country")
+    @OneToMany(cascade=CascadeType.ALL, mappedBy = "country_id")
     private Set<Division> divisions = new HashSet<>();
 
+    public Country() {
+    }
 }

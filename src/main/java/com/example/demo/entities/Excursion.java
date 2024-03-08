@@ -46,6 +46,8 @@ public class Excursion {
     @JoinTable(name="excursion_cartitem",
             joinColumns = @JoinColumn(name="excursion_id"),
             inverseJoinColumns = @JoinColumn(name="cart_item_id"))
-    private Set<CartItem> cartitems = new HashSet<>();
+    private Set<CartItem> cartitems = new HashSet<>(); //In UML this item is "cartitems" all lowercase. In ERD and SQL it is cartItems. Neither seems to compile
 
+    public Excursion() {
+    }
 }

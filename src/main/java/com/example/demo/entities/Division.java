@@ -21,8 +21,7 @@ public class Division {
     private Long id;
 
     @Column(name="division")
-    //private String division_name; //In UML this entity is "division_name", but appears to be referenced as just "division" in practice
-    private String division;
+    private String division_name;
 
     @Column(name="create_date")
     @CreationTimestamp
@@ -39,8 +38,15 @@ public class Division {
 
     @Column(name="country_id")
     private Long country_id;
+    public void setCountry(Country country) {
+        setCountry_id(country.getId());
+        this.country = country;
+    }
 
     //@Column(name="customers")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "division")
     private Set<Customer> customers = new HashSet<>();
+
+    public Division() {
+    }
 }
