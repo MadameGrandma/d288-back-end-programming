@@ -8,6 +8,7 @@ import com.example.demo.entities.Cart;
 import com.example.demo.entities.CartItem;
 import com.example.demo.entities.Customer;
 import com.example.demo.entities.StatusType;
+import com.example.demo.entities.StatusType.*;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -42,14 +43,14 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         // Populate cart with cartItems
         cart.setCartItem(purchase.getCartItem());
-        //cart.setCustomer(cart.getCart());
+
 
         //Populate customer with cart
         Customer customer = purchase.getCustomer();
         customer.add(cart);
 
         // Set cart to ordered
-        cart.setStatus(StatusType.valueOf("ordered"));
+        cart.setStatus(StatusType.ordered);
 
         //Save to the database
         customerRepository.save(customer);
