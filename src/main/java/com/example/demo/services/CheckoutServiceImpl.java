@@ -58,7 +58,11 @@ public class CheckoutServiceImpl implements CheckoutService {
         cartRepository.save(cart);
 
         //Return response
-        return new PurchaseResponse(orderTrackingNumber);
+        if (cart == null){
+            return new PurchaseResponse("Cart Is Empty");
+        } else {
+            return new PurchaseResponse(orderTrackingNumber);
+        }
     }
 
     private String generateOrderTrackingNumber() {
