@@ -17,13 +17,8 @@ import java.util.UUID;
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
 
-    private CustomerRepository customerRepository;
     private CartRepository cartRepository;
 
-
-    //public CheckoutServiceImpl(CustomerRepository customerRepository) {
-    //    this.customerRepository = customerRepository;
-    //}
     public CheckoutServiceImpl(CartRepository cartRepository){
         this.cartRepository = cartRepository;
     }
@@ -58,11 +53,9 @@ public class CheckoutServiceImpl implements CheckoutService {
         cartRepository.save(cart);
 
         //Return response
-        if (cart == null){
-            return new PurchaseResponse("Cart Is Empty");
-        } else {
-            return new PurchaseResponse(orderTrackingNumber);
-        }
+        //FIX ME: Implement something to capture empty carts and display "Cart is empty" message
+        return new PurchaseResponse(orderTrackingNumber);
+
     }
 
     private String generateOrderTrackingNumber() {
