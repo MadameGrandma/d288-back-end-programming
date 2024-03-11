@@ -5,6 +5,7 @@ import com.example.demo.entities.CartItem;
 import com.example.demo.entities.Customer;
 import lombok.Data;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Data
@@ -12,6 +13,6 @@ public class Purchase {
 
     private Customer customer;
     private Cart cart;
-    private Set<CartItem> cartItem;
+    private Set<CartItem> cartItem = new HashSet<>();
 
 }

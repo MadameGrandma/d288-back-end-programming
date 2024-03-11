@@ -21,8 +21,11 @@ public class CheckoutServiceImpl implements CheckoutService {
     private CartRepository cartRepository;
 
 
-    public CheckoutServiceImpl(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
+    //public CheckoutServiceImpl(CustomerRepository customerRepository) {
+    //    this.customerRepository = customerRepository;
+    //}
+    public CheckoutServiceImpl(CartRepository cartRepository){
+        this.cartRepository = cartRepository;
     }
     @Override
     @Transactional
@@ -40,7 +43,6 @@ public class CheckoutServiceImpl implements CheckoutService {
         cartItem.forEach(item -> cart.add(item));
 
         // Populate cart with customer
-        //cart.setCartItem(purchase.getCartItem());
         cart.setCustomer(purchase.getCustomer());
 
 
@@ -52,8 +54,8 @@ public class CheckoutServiceImpl implements CheckoutService {
         cart.setStatus(StatusType.ordered);
 
         //Save to the database
-        customerRepository.save(customer);
-        //cartRepository.save(cart);
+        //customerRepository.save(customer);
+        cartRepository.save(cart);
 
         //Return response
         return new PurchaseResponse(orderTrackingNumber);

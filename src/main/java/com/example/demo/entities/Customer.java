@@ -55,5 +55,14 @@ public class Customer {
     }
 
     public void add(Cart cart) {
+
+        if (cart != null) {
+            carts.add(cart);
+            cart.setCustomer(this);
+
+            if (carts == null) {
+                carts = new HashSet<>();
+            }
+        }
     }
 }
