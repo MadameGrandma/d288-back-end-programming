@@ -8,7 +8,6 @@ import com.example.demo.entities.Cart;
 import com.example.demo.entities.CartItem;
 import com.example.demo.entities.Customer;
 import com.example.demo.entities.StatusType;
-import com.example.demo.entities.StatusType.*;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -22,9 +21,8 @@ public class CheckoutServiceImpl implements CheckoutService {
     private CartRepository cartRepository;
 
 
-    public CheckoutServiceImpl(CustomerRepository customerRepository, CartRepository cartRepository) {
+    public CheckoutServiceImpl(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.cartRepository = cartRepository;
     }
     @Override
     @Transactional
@@ -37,12 +35,13 @@ public class CheckoutServiceImpl implements CheckoutService {
         String orderTrackingNumber = generateOrderTrackingNumber();
         cart.setOrderTrackingNumber(orderTrackingNumber);
 
-        // Populate order with cartItems
-        Set<CartItem> cartItems = purchase.getCartItem();
-        cartItems.forEach(item -> cart.add(item));
-
         // Populate cart with cartItems
-        cart.setCartItem(purchase.getCartItem());
+        Set<CartItem> cartItem = purchase.getCartItem();
+        cartItem.forEach(item -> cart.add(item));
+
+        // Populate cart with customer
+        //cart.setCartItem(purchase.getCartItem());
+        cart.setCustomer(purchase.getCustomer());
 
 
         //Populate customer with cart
@@ -54,7 +53,7 @@ public class CheckoutServiceImpl implements CheckoutService {
 
         //Save to the database
         customerRepository.save(customer);
-        cartRepository.save(cart);
+        //cartRepository.save(cart);
 
         //Return response
         return new PurchaseResponse(orderTrackingNumber);

@@ -14,5 +14,4 @@ public class Purchase {
     private Cart cart;
     private Set<CartItem> cartItem;
 
-
 }
