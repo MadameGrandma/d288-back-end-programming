@@ -32,7 +32,7 @@ public class BootStrapData implements CommandLineRunner {
         Customer custFiveInit = new Customer("Frankey", "Wavytail","657 Growler Terrace", "55472","5032476754", division);
 
         // Add customers to division
-        assert division != null;
+        //assert division != null;
         division.getCustomers().add(custOneInit);
         division.getCustomers().add(custTwoInit);
         division.getCustomers().add(custThreeInit);

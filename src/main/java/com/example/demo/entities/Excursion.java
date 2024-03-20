@@ -37,17 +37,13 @@ public class Excursion {
     @UpdateTimestamp
     private Date last_update;
 
-    //@Column(name="vacation_id")
+    //Maps to Set<Excursion> in Vacation entity. vacation_id is FK
     @ManyToOne
     @JoinColumn(name="vacation_id", nullable = false)
     private Vacation vacation;
 
-    @ManyToMany
-    @JoinTable(name="excursion_cartitem",
-            joinColumns = @JoinColumn(name="excursion_id"),
-            inverseJoinColumns = @JoinColumn(name="cart_item_id"))
-    private Set<CartItem> cartitems = new HashSet<>(); //In UML this item is "cartitems" all lowercase. In ERD and SQL it is cartItems. Neither seems to compile
-
+    @ManyToMany(mappedBy = "excursions")
+    private Set<CartItem> cartitems = new HashSet<>();
     public Excursion() {
     }
 }

@@ -13,7 +13,6 @@ import java.util.Set;
 @Table(name="divisions")
 @Getter
 @Setter
-
 public class Division {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,7 +30,7 @@ public class Division {
     @UpdateTimestamp
     private Date last_update;
 
-    //@Column(name="country")
+    //Other side of Set<Division> in Country entity. country_id is FK
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="country_id", nullable = false, insertable = false, updatable = false)
     private Country country;
@@ -43,9 +42,10 @@ public class Division {
         this.country = country;
     }
 
-    //@Column(name="customers")
+    // Maps to "customers" variable in Customer entity.
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "division")
     private Set<Customer> customers = new HashSet<>();
+    //private Set<Customer> customers;
 
     public Division() {
     }

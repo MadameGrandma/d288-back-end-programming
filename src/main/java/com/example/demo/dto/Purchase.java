@@ -13,6 +13,8 @@ public class Purchase {
 
     private Customer customer;
     private Cart cart;
-    private Set<CartItem> cartItem = new HashSet<>();
+    private Set<CartItem> cartItems = new HashSet<>();
+    //private Set<CartItem> cartItem;
+
 
 }

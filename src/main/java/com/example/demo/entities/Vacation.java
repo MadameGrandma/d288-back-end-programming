@@ -40,9 +40,10 @@ public class Vacation {
     @UpdateTimestamp
     private Date last_update;
 
-    //@Column(name="excursions")
+    // Maps to "vacation" in Excursion entity
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "vacation")
     private Set<Excursion> excursions = new HashSet<>();
+    //private Set<Excursion> excursions;
 
     public Vacation() {
     }

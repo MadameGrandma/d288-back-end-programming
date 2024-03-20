@@ -31,7 +31,8 @@ public class Cart {
     @Column(name="party_size", nullable = false)
     private int party_size;
 
-    @Enumerated(value = EnumType.STRING)
+    //@Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     @Column(name="status")
     private StatusType status;
 
@@ -43,17 +44,29 @@ public class Cart {
     @UpdateTimestamp
     private Date last_update;
 
-    //@Column(name="customer_id")
+    // Other side of Set<Cart> collection in Customer entity. customer_id is FK
     @ManyToOne
     @JoinColumn(name="customer_id", nullable = false)
     private Customer customer;
 
+    // Maps to "cart" variable in CartItem entity. cart_id is FK
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "cart")
     private Set<CartItem> cartItem = new HashSet<>();
+    //private Set<CartItem> cartItem;
 
     public Cart() {
     }
 
+
     public void add(CartItem item) {
+        if (item != null) {
+            if (cartItem == null) {
+                cartItem = new HashSet<>();
+            }
+
+            cartItem.add(item);
+            item.setCart(this);
+        }
     }
 }
+

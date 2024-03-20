@@ -26,11 +26,15 @@ public class CartItem {
     @JoinColumn(name="vacation_id", nullable = false)
     private Vacation vacation;
 
-    @ManyToMany(mappedBy="cartitems")
-    //@JoinColumn(name="excursion_id", nullable = false)
+    // Maps to "cartitems" in Excursions entity
+    @ManyToMany
+    @JoinTable(name="excursion_cartitem",
+            joinColumns = @JoinColumn(name="cart_item_id"),
+            inverseJoinColumns = @JoinColumn(name="excursion_id"))
     private Set<Excursion> excursions = new HashSet<>();
 
-    //@Column(name="cart_id")
+
+    // Other side of Set<CartItem> relationship in Cart entity. cart_id is FK
     @ManyToOne
     @JoinColumn(name="cart_id", nullable = false)
     private Cart cart;

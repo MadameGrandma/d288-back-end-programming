@@ -30,9 +30,11 @@ public class Country {
     @UpdateTimestamp
     private Date last_update;
 
-    //@Column(name="divisions")
+    // Maps to "country" variable in Division entity.
+    //@OneToMany(cascade=CascadeType.ALL, mappedBy = "country_id")
     @OneToMany(cascade=CascadeType.ALL, mappedBy = "country_id")
     private Set<Division> divisions = new HashSet<>();
+    //private Set<Division> divisions;
 
     public Country() {
     }

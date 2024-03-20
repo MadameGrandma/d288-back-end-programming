@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.dto.Purchase;
 import com.example.demo.dto.PurchaseResponse;
 import com.example.demo.services.CheckoutService;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,9 +20,13 @@ public class CheckoutController {
     }
 
     @PostMapping("/purchase")
-    public PurchaseResponse placeOrder(@RequestBody Purchase purchase){
-        PurchaseResponse purchaseResponse = checkoutService.placeOrder(purchase);
+    public PurchaseResponse placeOrder(@RequestBody Purchase purchase) {
 
-        return purchaseResponse;
+                PurchaseResponse purchaseResponse = checkoutService.placeOrder(purchase);
+                return purchaseResponse;
     }
 }
+
+
+
+
